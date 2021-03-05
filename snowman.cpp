@@ -35,12 +35,12 @@ string ariel::snowman(int num) {
 
 }
 
-
-int main() {
-//    std::cout << "Hello, World!" << std::endl;
-    std::cout << ariel::snowman(43211234);
-    std::cout << std::endl<< std::endl;
-//    std::cout << ariel::snowman(12345678);
-    return 0;
-}
+//
+//int main() {
+////    std::cout << "Hello, World!" << std::endl;
+//    std::cout << ariel::snowman(43211234);
+//    std::cout << std::endl<< std::endl;
+////    std::cout << ariel::snowman(12345678);
+//    return 0;
+//}
 
