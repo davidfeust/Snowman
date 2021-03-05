@@ -11,16 +11,15 @@ using namespace std;
 
 namespace ariel {
     string snowman(int num);
-
-//    string hat[] = {"_===_", " ___ \n.....", "  _  \n /_\\ ", " ___ \n(_*_)"};
+//    std::string hat[4] = {string("_===_"), string(" ___ \n....."), string("  _  \n /_\\ "), string(" ___ \n(_*_)")};
 //    string nose[] = {",", ".", "_", " "};
 //    string eye[] = {".", "o", "O", "-"};
-////    string left_arm[] = {" \n<", "\\\n ", "O", "-"};
+//    string left_arm[] = {" \n<", "\\\n ", "O", "-"};
 //    string torso[] = {" : ", "] [", "> <", "   "};
 //    string base[] = {" : ", "\" \"", "___", "   "};
 //    auto shapes = {hat, nose, eye, torso, base};
 
-//    string shapes[][4] = {
+//    char *shapes_mat[][4] = {
 //            {" _===_ \n", "  ___  \n ..... \n", "   _   \n  /_\\  \n", "  ___  \n (_*_) \n"},
 //            {",", ".", "_", " "},
 //            {".", "o", "O", "-"},

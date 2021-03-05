@@ -16,6 +16,13 @@ HNLRXYTB
 */
 
 string ariel::snowman(int num) {
+//        string shapes[][4] = {
+//            {" _===_ \n", "  ___  \n ..... \n", "   _   \n  /_\\  \n", "  ___  \n (_*_) \n"},
+//            {",", ".", "_", " "},
+//            {".", "o", "O", "-"},
+//            {" : ", "] [", "> <", "   "},
+//            {" : ", "\" \"", "___", "   "}
+//    };
 //    string ans = " HHHHH \n"
 //                 " HHHHH \n"
 //                 "X(LNR)Y\n"
@@ -29,7 +36,7 @@ string ariel::snowman(int num) {
 //
 ////        ans += ariel::shapes[7 - i][digit - 1];
 //    }
-//
+
     return "_===_\n(.,.)\n( : )\n( : )";
 //    return ans;
 
