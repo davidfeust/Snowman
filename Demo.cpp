@@ -1,6 +1,6 @@
 /**
  * Demo program for snowman exercise.
- * 
+ *
  * Author: Erel Segal-Halevi
  * Since : 2021-02
  */

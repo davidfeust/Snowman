@@ -4,6 +4,11 @@
 set -o pipefail   # see https://unix.stackexchange.com/a/267031/16569
 exec 2>&1         # redirect stderr to stdout: https://unix.stackexchange.com/q/505581/16569
 
+TIMEOUT=1  # 1 second - default timeout
+
+typeset -F SECONDS
+SECONDS=0
+echo "--- $SECONDS seconds"
 
 run_in_folder_if_exists() {
 	if [ -d "$1" ]
@@ -36,39 +41,40 @@ swap() {
 }
 
 # A function that echoes and executes a command.
-call() { 
-	echo "! ${@/eval/}" 
+call() {
+	echo "! ${@/eval/}"
 	$@
 }
 
 # A function that echoes and executes a command.
 # If it fails, it sets grade=0.
 # If it succeeds, it sets grade=100.
-grade_command() { 
+grade_command() {
 	grade=100
-	call $@
+	call timeout $TIMEOUT $@
 	exitcode=$?
 	if [ $exitcode -ne 0 ]
-	then 
+	then
 		printf "*** Command failed. Exit code: $exitcode ***\n"
 		grade=0
 	fi
+	echo "--- $SECONDS seconds"
 }
 
 # A function that echoes and executes a command.
 # If it fails, it sets grade=0.
 # If it succeeds, it sets grade=[last line of output]
-grade_program() { 
+grade_program() {
 	program=$1
-	TIMEOUT=1
-	echo "! timeout $TIMEOUT ./$program" 
+	echo "! timeout $TIMEOUT ./$program"
 	timeout $TIMEOUT ./$program
 	exitcode=$?
 	if [ $exitcode -ne 0 ]
-	then 
-		printf "*** Command failed. Exit code: $exitcode ***\n"
+	then
+		printf "*** Program failed. Exit code: $exitcode ***\n"
 		grade=0
 	else
 		grade=$( { timeout $TIMEOUT ./$program || echo 0; } | tail -n1 )
 	fi
+	echo "--- $SECONDS seconds"
 }
