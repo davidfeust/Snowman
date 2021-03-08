@@ -1,4 +1,4 @@
-#include <iostream>
+#include <array>
 #include "snowman.hpp"
 
 using namespace std;
@@ -35,18 +35,18 @@ string ariel::snowman(int num) {
         throw invalid_argument("Invalid code '" + to_string(num) + "'");
     }
 
-    const string hat[] = {"       \n _===_ \n", "  ___  \n ..... \n", "   _   \n  /_\\  \n", "  ___  \n (_*_) \n"};
-    const string nose[] = {",", ".", "_", " "};
-    const string eye[] = {".", "o", "O", "-"};
-    const string left_arm_up[] = {" ", "\\", " ", " "};
-    const string left_arm_down[] = {"<", " ", "/", " "};
-    const string right_arm_up[] = {" ", "/", " ", " "};
-    const string right_arm_down[] = {">", " ", "\\", " "};
-    const string torso[] = {" : ", "] [", "> <", "   "};
-    const string base[] = {" : ", "\" \"", "___", "   "};
+    const std::array<string, 4> hat = {"       \n _===_ \n", "  ___  \n ..... \n", "   _   \n  /_\\  \n", "  ___  \n (_*_) \n"};
+    const std::array<string, 4> nose = {",", ".", "_", " "};
+    const std::array<string, 4> eye = {".", "o", "O", "-"};
+    const std::array<string, 4> left_arm_up = {" ", "\\", " ", " "};
+    const std::array<string, 4> left_arm_down = {"<", " ", "/", " "};
+    const std::array<string, 4> right_arm_up = {" ", "/", " ", " "};
+    const std::array<string, 4> right_arm_down = {">", " ", "\\", " "};
+    const std::array<string, 4> torso = {" : ", "] [", "> <", "   "};
+    const std::array<string, 4> base = {" : ", "\" \"", "___", "   "};
 
     string ans = string("");
-    int code[8];
+    array<int, 8> code{};
     for (int i = 0; i < 8; ++i) {
         code[7 - i] = (num % 10) - 1;
         num /= 10;
