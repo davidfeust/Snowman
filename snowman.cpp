@@ -23,6 +23,7 @@ HNLRXYTB
  * @return string of snowman by the code number
  */
 string ariel::snowman(int num) {
+    // Checks if the number is valid
     const int big_number = 99999999;
     const int small_number = 10000000;
     if (num > big_number) {
@@ -35,7 +36,9 @@ string ariel::snowman(int num) {
         throw invalid_argument("Invalid code '" + to_string(num) + "'");
     }
 
-    const std::array<string, 4> hat = {"       \n _===_ \n", "  ___  \n ..... \n", "   _   \n  /_\\  \n", "  ___  \n (_*_) \n"};
+    // All possibles elements for every part in the snowman
+    const std::array<string, 4> hat = {"       \n _===_ \n", "  ___  \n ..... \n", "   _   \n  /_\\  \n",
+                                       "  ___  \n (_*_) \n"};
     const std::array<string, 4> nose = {",", ".", "_", " "};
     const std::array<string, 4> eye = {".", "o", "O", "-"};
     const std::array<string, 4> left_arm_up = {" ", "\\", " ", " "};
@@ -45,23 +48,34 @@ string ariel::snowman(int num) {
     const std::array<string, 4> torso = {" : ", "] [", "> <", "   "};
     const std::array<string, 4> base = {" : ", "\" \"", "___", "   "};
 
-    string ans = string("");
-    array<int, 8> code{};
-    for (int i = 0; i < 8; ++i) {
-        code[7 - i] = (num % 10) - 1;
-        num /= 10;
+    // Inserts the code number into array
+    const int size = 8;
+    array<int, size> code{};
+    for (int i = 0; i < size; ++i) {
+        const int div = 10;
+        code.at(size - 1 - i) = (num % div) - 1;
+        num /= div;
     }
 
-    ans += hat[code[0]];
+    // Takes the appropriate code for each part of the snowman, in order: HNLRXYTB
+    int index_code = 0;
+    const int h = code.at(index_code++);
+    const int n = code.at(index_code++);
+    const int l = code.at(index_code++);
+    const int r = code.at(index_code++);
+    const int x_up = code.at(index_code);
+    const int x_down = code.at(index_code++);
+    const int y_up = code.at(index_code);
+    const int y_down = code.at(index_code++);
+    const int t = code.at(index_code++);
+    const int b = code.at(index_code);
 
-    ans += left_arm_up[code[4]];
-    ans += "(" + eye[code[2]] + nose[code[1]] + eye[code[3]] + ")";
-    ans += right_arm_up[code[5]] + "\n";
+    // Assembles the snowman
+    string ans = hat.at(h);
+    ans += left_arm_up.at(x_up) + "(" + eye.at(l) + nose.at(n) + eye.at(r) + ")" + right_arm_up.at(y_up) + "\n";
+    ans += left_arm_down.at(x_down) + "(" + torso.at(t) + ")" + right_arm_down.at(y_down) + "\n";
+    ans += " (" + base.at(b) + ") \n";
 
-    ans += left_arm_down[code[4]];
-    ans += "(" + torso[code[6]] + ")";
-    ans += right_arm_down[code[5]] + "\n";
-    ans += " (" + base[code[7]] + ") \n";
     return ans;
 }
 
@@ -72,11 +86,12 @@ string ariel::snowman(int num) {
  */
 bool is_invalid(int num) {
     while (num > 0) {
-        int digit = num % 10;
+        const int div = 10;
+        int digit = num % div;
         if (digit == 0 || digit > 4) {
             return true;
         }
-        num /= 10;
+        num /= div;
     }
     return false;
 }
