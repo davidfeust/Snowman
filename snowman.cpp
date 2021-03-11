@@ -27,13 +27,13 @@ string ariel::snowman(int num) {
     const int big_number = 99999999;
     const int small_number = 10000000;
     if (num > big_number) {
-        throw invalid_argument("Code number is invalid!\n More then 8 digits!");
+        throw out_of_range("Code number is invalid!\n More then 8 digits!");
     }
     if (num < small_number) {
-        throw invalid_argument("Code number is invalid!\n Less then 8 digits!");
+        throw out_of_range("Code number is invalid!\n Less then 8 digits!");
     }
     if (is_invalid(num)) {
-        throw invalid_argument("Invalid code '" + to_string(num) + "'");
+        throw out_of_range("Invalid code '" + to_string(num) + "'");
     }
 
     // All possibles elements for every part in the snowman
