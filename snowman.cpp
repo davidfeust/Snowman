@@ -18,9 +18,9 @@ HNLRXYTB
 */
 
 /**
- * Returns string of snowman by the pattern of the code number
- * @param num code number of snowman
- * @return string of snowman by the code number
+ * Returns string of snowman by the pattern of the code number.
+ * @param num code number of snowman.
+ * @return string of snowman by the code number.
  */
 string ariel::snowman(int num) {
     // Checks if the number is valid
