@@ -38,3 +38,4 @@ test
 
 /CMakeLists.txt
 /cmake-build-debug/
+/.editorconfig
